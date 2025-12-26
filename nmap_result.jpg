@@ -1,0 +1,25 @@
+nmap -p- --min-rate 5000 -A -vv 10.48.162.248 -oN initial port scanning 
+# Active Directory Enumeration & Network Analysis Lab
+
+## 🎯 Objective
+The goal of this lab is to perform a comprehensive network enumeration on a Windows Domain Controller to identify open ports, active services, and potential attack vectors within an Active Directory environment.
+
+## 🛠️ Methodology & Tools
+- **Tool:** Nmap (Network Mapper)
+- **Target IP:** 10.48.162.248
+- **OS:** Windows Server (Domain Controller)
+- **Strategy:** Conducted a full port scan with service version detection and default script execution to map the attack surface.
+
+## 🔍 Scan Command
+```bash
+nmap -p- --min-rate 5000 -A -vv 10.48.162.248 -oN initial_scan.txt
+
+Port	Service	Importance
+53	DNS	Essential for domain name resolution and information gathering.
+88	Kerberos	Critical for authentication. Target for Kerberoasting and Ticket attacks.
+135/445	RPC / SMB	File sharing active. Potential for Null Session or SMB signing attacks.
+389	LDAP	Used for user and group enumeration via tools like nxc.
+3389	RDP	Remote Desktop Access is enabled; requires monitoring for brute-force attempts
+445	SMB over IP	Used for file sharing and Named Pipes. Target for SMB Relay attacks or searching for sensitive files (passwords in scripts).
+464	Kerberos Password Change	Used for changing/setting passwords. Can be used for password spraying or brute-forcing accounts.
+636	LDAPS (LDAP over SSL)	Secure directory access. If misconfigured, can be used to extract the entire domain database via LDAP signing/relay attacks.
