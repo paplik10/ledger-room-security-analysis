@@ -8,7 +8,7 @@ The purpose of this project is to document the enumeration process, identified v
 - Platform: TryHackMe
 - Machine name: Ledger Room
 - Category: Web / System Enumeration
-- Difficulty: Medium
+- Difficulty: Medium 
 
 ## Methodology
 The analysis follows a standard penetration testing approach:
